@@ -32,7 +32,7 @@ pub fn is_version_cached(version_name: &String) -> bool {
 }
 
 pub fn is_version_installed(version_name: &String) -> bool {
-    fs::read_to_string(format!("{}/versions_installed", &*HYPRVISOR_TEST_DIR).as_str()).unwrap_or("".to_string()).contains(version_name)
+    fs::read_to_string(format!("{}/installed", &*HYPRVISOR_TEST_DIR).as_str()).unwrap_or("".to_string()).contains(version_name)
 }
 
 pub fn get_hyprland_versions() -> Result<VersionList, Error> {

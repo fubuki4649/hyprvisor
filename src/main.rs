@@ -1,9 +1,9 @@
 mod versions;
 mod subcmd;
+mod repo_functions;
 
-use anyhow::Error;
 use structopt::StructOpt;
-use crate::subcmd::{install, ls};
+use crate::subcmd::{install, ls, uninstall};
 
 #[derive(StructOpt)]
 struct Cli {
@@ -20,11 +20,9 @@ enum Commands {
         version: String,
     },
     #[structopt(about = "Multiplies two numbers")]
-    Uninstall,
-}
-
-fn uninstall() -> Result<(), Error> {
-    Ok(())
+    Uninstall {
+        version: String,
+    },
 }
 
 
@@ -35,7 +33,7 @@ fn main() {
     match args.cmd {
         Commands::Ls => ls(),
         Commands::Install { version } => install(version, true),
-        Commands::Uninstall => uninstall(),
+        Commands::Uninstall { version } => uninstall(version),
     }.unwrap()
     
 }
